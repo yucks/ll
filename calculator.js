@@ -484,3 +484,5 @@ $(function(){
     }
     calculateResults();
 });
+
+console.log("test");
