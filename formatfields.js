@@ -1,11 +1,20 @@
 // Jquery Dependency
 
-$(".field-decimal").on({
+$(".field-currency").on({
     keyup: function() {
-      formatCurrency($(this));
+      formatCurrency($(this), "$");
     },
     blur: function() { 
-      formatCurrency($(this), "blur");
+      formatCurrency($(this),"$", "blur");
+    }
+});
+
+$(".field-decimal").on({
+    keyup: function() {
+      formatCurrency($(this), "");
+    },
+    blur: function() { 
+      formatCurrency($(this),"", "blur");
     }
 });
 
@@ -16,16 +25,12 @@ function formatNumber(n) {
 }
 
 
-function formatCurrency(input, blur) {
+function formatCurrency(input, prefix, blur) {
   // appends $ to value, validates decimal side
   // and puts cursor back in right position.
-
   
   // get input value
   var input_val = input.val();
-  
-  // get input data-type
-  var input_type = input.attr('data-type');
   
   // don't validate empty input
   if (input_val === "") { return; }
@@ -63,14 +68,14 @@ function formatCurrency(input, blur) {
     right_side = right_side.substring(0, 2);
 
     // join number by .
-    input_val = left_side + "." + right_side;
+    input_val = prefix + left_side + "." + right_side;
 
   } else {
     // no decimal entered
     // add commas to number
     // remove all non-digits
     input_val = formatNumber(input_val);
-    input_val = input_val;
+    input_val = prefix + input_val;
     
     // final formatting
     if (blur === "blur") {
