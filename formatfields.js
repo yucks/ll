@@ -79,7 +79,7 @@ function formatCurrency(input, prefix, blur) {
     
     // final formatting
     if (blur === "blur") {
-      input_val += ".00";
+      //input_val += ".00";
     }
   }
   
