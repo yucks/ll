@@ -7,6 +7,11 @@ $(".field-currency").on({
     }
 });
 
+$(".field-decimal").on({
+    keyup: function() {
+      formatCurrency($(this));
+    }
+});
 
 function formatNumber(n) {
   // format number 1000000 to 1,234,567
