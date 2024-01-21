@@ -1,4 +1,6 @@
-$(".field-currency").on({
+// Jquery Dependency
+
+$(".field-decimal").on({
     keyup: function() {
       formatCurrency($(this));
     },
@@ -7,11 +9,6 @@ $(".field-currency").on({
     }
 });
 
-$(".field-decimal").on({
-    keyup: function() {
-      formatCurrency($(this));
-    }
-});
 
 function formatNumber(n) {
   // format number 1000000 to 1,234,567
@@ -22,9 +19,13 @@ function formatNumber(n) {
 function formatCurrency(input, blur) {
   // appends $ to value, validates decimal side
   // and puts cursor back in right position.
+
   
   // get input value
   var input_val = input.val();
+  
+  // get input data-type
+  var input_type = input.attr('data-type');
   
   // don't validate empty input
   if (input_val === "") { return; }
@@ -62,14 +63,14 @@ function formatCurrency(input, blur) {
     right_side = right_side.substring(0, 2);
 
     // join number by .
-    input_val = "$" + left_side + "." + right_side;
+    input_val = left_side + "." + right_side;
 
   } else {
     // no decimal entered
     // add commas to number
     // remove all non-digits
     input_val = formatNumber(input_val);
-    input_val = "$" + input_val;
+    input_val = input_val;
     
     // final formatting
     if (blur === "blur") {
@@ -85,4 +86,5 @@ function formatCurrency(input, blur) {
   caret_pos = updated_len - original_len + caret_pos;
   input[0].setSelectionRange(caret_pos, caret_pos);
 }
+
 
