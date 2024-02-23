@@ -429,7 +429,7 @@ $(function(){
             weeklyCost = round(weeklyCost, 0);
             weeklyCost = '$' + weeklyCost.toLocaleString();
             $('#weeklyCost').text(weeklyCost);
-            document.getElementById('weekly_net_cost').value(weeklyCost);
+            document.getElementById('weekly_net_cost').val(weeklyCost);
 
             var annualCost = ( annualNetCostStatutoryMethod < annualNetCostOpCostMethod ? annualNetCostStatutoryMethod : annualNetCostOpCostMethod );
             annualCost = round(annualCost, 0);
